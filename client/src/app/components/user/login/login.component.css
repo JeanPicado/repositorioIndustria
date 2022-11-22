@@ -1,0 +1,32 @@
+.login-form {
+  background-color: #252629;
+  color: #ffffff;
+  margin: 135px auto;
+}
+
+h1{
+  color: #ffffff; 
+  font-family: Roboto;     
+}
+
+.fa{
+  color: #ffffff;    
+}
+
+.form-field .pass{
+  color: #ffffff;
+  font-family: Roboto Light;
+  background-color: #54575f;  
+}
+
+.form-field .username{
+  color: #ffffff;
+  font-family: Roboto Light;
+  background-color: #54575f;  
+}
+
+.submit{
+  color: #ffffff;
+  font-family: Roboto Light;
+  background-color: #00b7ffbf;  
+}

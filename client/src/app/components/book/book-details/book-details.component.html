@@ -1,0 +1,41 @@
+<div *ngIf="book" class="row book-details">
+  <div class="col-1">
+    <img src="{{book.cover}}" alt="book-cover" />
+  </div>
+  <div class="col-7 book-info">
+    <h3>{{book.title}}</h3>
+    <span class="fa fa-star {{stars[0]}}" (click)="rateBook(1)" (mouseenter)="calcRating(1)" (mouseleave)="resetRating()"></span>
+    <span class="fa fa-star {{stars[1]}}" (click)="rateBook(2)" (mouseenter)="calcRating(2)" (mouseleave)="resetRating()"></span>
+    <span class="fa fa-star {{stars[2]}}" (click)="rateBook(3)" (mouseenter)="calcRating(3)" (mouseleave)="resetRating()"></span>
+    <span class="fa fa-star {{stars[3]}}" (click)="rateBook(4)" (mouseenter)="calcRating(4)" (mouseleave)="resetRating()"></span>
+    <span class="fa fa-star {{stars[4]}}" (click)="rateBook(5)" (mouseenter)="calcRating(5)" (mouseleave)="resetRating()"></span>
+    <p>basado en {{book.ratedCount}} puntuaciones</p>
+    <p>{{book.comments.length}} comentarios</p>
+    <p>Autor: {{book.author}}</p>
+    <p>Género: {{book.genre}}</p>
+    <p>Fecha de publicación: {{book.year}}</p>
+    <p>ISBN: {{book.isbn}}</p>
+    <p>Número de páginas: {{book.pagesCount}}</p>
+    <p class="book-description">Descripción: {{book.description}}</p>
+    <h2>Precio: {{book.price}} &#x24;</h2>
+    <ng-template [ngIf]="isLogged">
+      <button class="btn btn-success" (click)="buyBook()" [disabled]="isBought">Comprar libro</button>
+      <button class="btn btn-secondary" (click)="addToFavorites()" [disabled]="isAdded">Agregar a favoritos</button>
+    </ng-template>
+    <ng-template [ngIf]="isAdmin">
+      <div id="admin-panel">
+        <a class="btn btn-warning" routerLink="/book/edit/{{book._id}}">Editar libro</a>
+        <a class="btn btn-danger" routerLink="/book/delete/{{book._id}}">Eliminar libro</a>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!isLogged">
+      <button class="btn btn-secondary" (click)="login()">Inicia sesión para comprar, puntuar, o comentar</button>
+    </ng-template>
+  </div>
+</div>
+<ng-template [ngIf]="book">
+  <app-comment [bookId]="bookId" [isLogged]="isLogged" [isAdmin]="isAdmin" [userId]="userId"></app-comment>
+</ng-template>
+<div [hidden]="book" class="no-results">
+  <img src="https://i.imgur.com/KRVihMq.png" alt="no-item-found">
+</div>
